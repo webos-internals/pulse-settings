@@ -1,0 +1,14 @@
+{
+  "role": {
+     "exeName":"js",
+     "type": "privileged",
+     "allowedNames": ["org.webosinternals.pulseaudio.settings.srv"]
+  },
+  "permissions": [
+    {
+      "service":"org.webosinternals.pulseaudio.settings.srv",
+      "inbound":["*"],
+      "outbound":["*"]
+    }
+  ]
+}

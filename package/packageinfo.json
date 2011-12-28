@@ -1,0 +1,12 @@
+{
+  "id": "org.webosinternals.pulseaudio.settings",
+  "package_format_version": 2,
+  "loc_name": "PulseAudio Settings",
+  "version": "0.8.2",
+  "icon": "icon.png",
+  "miniicon": "icon.png",
+  "vendor": "WebOS Internals",
+  "vendorurl": "www.webos-internals.org",
+  "app": "org.webosinternals.pulseaudio.settings",
+  "services": ["org.webosinternals.pulseaudio.settings.srv"]
+}

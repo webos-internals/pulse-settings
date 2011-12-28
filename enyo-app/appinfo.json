@@ -1,0 +1,14 @@
+{
+	"title": "PulseAudio Settings",
+	"id": "org.webosinternals.pulseaudio.settings",
+	"version": "0.8.2",
+	"release_date": "30-Sep-2011",
+	"vendor": "WebOS Internals",
+	"vendor_email":	"support@webos-internals.org",
+	"vendor_url": "http://www.webos-internals.org/wiki/Application:PulseAudioSettings",
+	"type": "web",
+	"noWindow" : true,
+	"main": "index.html",
+	"icon": "icon.png",
+	"uiRevision": 2
+}

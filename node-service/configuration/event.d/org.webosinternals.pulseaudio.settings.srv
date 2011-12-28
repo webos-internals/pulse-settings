@@ -1,0 +1,13 @@
+start on started LunaSysMgr
+
+script
+	# Wait until LunaSysMgr is done loading
+	
+	while [ ! -e /tmp/suspend_active ]; do
+		sleep 1
+	done
+	
+	sleep 15
+	
+	luna-send -n 1 palm://org.webosinternals.pulseaudio.settings.srv/control '{"action":"init"}'
+end script

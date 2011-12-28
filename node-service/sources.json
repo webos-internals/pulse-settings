@@ -1,0 +1,11 @@
+[
+	{
+		"library": { "name": "foundations", "version": "1.0" }
+	},
+	{ 
+		"source": "assistants/control-assistant.js" 
+	},
+	{ 
+		"source": "assistants/service-assistant.js" 
+	}
+]

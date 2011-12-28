@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+	  <title>PulseAudio Settings</title>
+	  <script src="/usr/palm/frameworks/enyo/1.0/framework/enyo.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			enyo.application = {
+				appUI: new PulseAudioControl.Main(),
+
+				openMainCard: function() {
+					enyo.windows.activate("main.html", "main", {});					
+				},
+				
+				applicationRelaunchHandler: function(params) {
+					if(params.dashboard == "none") {
+						this.appUI.$.controlDashboard.setLayers([]);
+					} else if(params.dashboard == "error") {
+						if(params.reason == "usb")
+							enyo.windows.addBannerMessage("No USB audio device was found", "{}", "images/icon-dash.png");
+						else
+							enyo.windows.addBannerMessage("PulseAudio server connection failed", "{}", "images/icon-dash.png");
+					} else if(params.dashboard == "auto") {
+						var hasNotification = false;
+						
+						if(this.appUI.$.controlDashboard.layers) {
+							for(var i = 0; i < this.appUI.$.controlDashboard.layers.length; i++) {
+								if((this.appUI.$.controlDashboard.layers[i].action == "disconnect") &&
+									(this.appUI.$.controlDashboard.layers[i].address == params.address))
+								{
+									hasNotification = true;
+									break;
+								}
+							}
+						}
+
+						if(!hasNotification) {
+							enyo.windows.addBannerMessage("PulseAudio network server connected", "{}", "images/icon-dash.png");
+
+							this.appUI.$.controlDashboard.setLayers([{icon: "images/icon.png", 
+								title: "Connected to: " + params.address, text: "Tap to disconnect the server",
+									action: "disconnect", address: params.address, sinks: params.sinks}]);
+						}
+					} else if(params.dashboard == "manual") {
+						var hasNotification = false;
+						
+						if(this.appUI.$.controlDashboard.layers) {
+							for(var i = 0; i < this.appUI.$.controlDashboard.layers.length; i++) {
+								if((this.appUI.$.controlDashboard.layers[i].action == "connect") &&
+									(this.appUI.$.controlDashboard.layers[i].address == params.address))
+								{
+									hasNotification = true;
+									break;
+								}
+							}
+						}
+
+						if(!hasNotification) {
+							enyo.windows.addBannerMessage("PulseAudio network server available", "{}", "images/icon-dash.png");
+
+							this.appUI.$.controlDashboard.setLayers([{icon: "images/icon.png", 
+								title: "Server available: " + params.address, text: "Tap to connect the server",
+									action: "connect", address: params.address, sinks: params.sinks}]);
+						}
+					} else {
+						this.openMainCard();
+					}
+				}
+			};
+
+			// Handle initial launch parameters like it would be relaunch
+
+			enyo.application.applicationRelaunchHandler(enyo.windowParams);
+		</script>
+	</body>
+</html>
