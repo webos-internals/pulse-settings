@@ -1,0 +1,3 @@
+PulseAudio Settings is an application for webOS that allows configuring the
+pulseaudio and its modules. Currently it allows turning on/off usb audio
+and configuring/connecting into other pulseaudio daemons over the network.
